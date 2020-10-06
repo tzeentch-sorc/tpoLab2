@@ -6,6 +6,7 @@ public class Cofunc implements Calculator {
     private Calculator cos;//if is null then func == cosec
     private Calculator sin;//if is null then func == sec
     private FuncType calculatedFunc;
+
     public Cofunc(Calculator cos, Calculator sin, FuncType f) {
         this.cos = cos;
         this.sin = sin;
@@ -27,8 +28,9 @@ public class Cofunc implements Calculator {
                 return 1 / cos.calcValue(x, p);
             case CSC:
                 return 1 / sin.calcValue(x, p);
+            default:
+                throw new UnsupportedOperationException();
         }
-        return -1;
     }
 
     @Override
