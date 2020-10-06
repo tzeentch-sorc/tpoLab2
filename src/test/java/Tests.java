@@ -5,6 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.junit.Assert;
 import org.junit.Test;
 import trigonometry.Sin;
+import utils.Calculator;
 import utils.Writer;
 
 import java.io.File;
@@ -12,15 +13,16 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
-public class LnTest {
+public class Tests {
 
     private double p = 0.00001d;
 
     @Test
     public void calcDefinedLn() {
-
+        Calculator calculator = new Ln();
+        String filename = String.format("%sModuleOutput.csv", calculator.getName());
         try {
-            utils.Writer.writeCSV(0.1, 10, 1000, p, new Ln());
+            utils.Writer.writeCSV(0.1, 10, 1000, p, calculator);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();
@@ -28,7 +30,7 @@ public class LnTest {
 
 
         try {
-            CSVParser parser = CSVParser.parse(new File("moduleOut.csv"), Charset.forName("UTF-8"), CSVFormat.RFC4180.withFirstRecordAsHeader().withSkipHeaderRecord());
+            CSVParser parser = CSVParser.parse(new File(filename), Charset.forName("UTF-8"), CSVFormat.RFC4180.withFirstRecordAsHeader().withSkipHeaderRecord());
             List<CSVRecord> records = parser.getRecords();
 
             for (CSVRecord record : records) {
@@ -42,9 +44,10 @@ public class LnTest {
 
     @Test
     public void calcDefinedSin() {
-
+        Calculator calculator = new Sin();
+        String filename = String.format("%sModuleOutput.csv", calculator.getName());
         try {
-            Writer.writeCSV(-20, 0.1, 400, p, new Sin());
+            Writer.writeCSV(-20, 0.1, 400, p, calculator);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();
@@ -52,7 +55,7 @@ public class LnTest {
 
 
         try {
-            CSVParser parser = CSVParser.parse(new File("moduleOut.csv"), Charset.forName("UTF-8"), CSVFormat.RFC4180.withFirstRecordAsHeader().withSkipHeaderRecord());
+            CSVParser parser = CSVParser.parse(new File(filename), Charset.forName("UTF-8"), CSVFormat.RFC4180.withFirstRecordAsHeader().withSkipHeaderRecord());
             List<CSVRecord> records = parser.getRecords();
 
             for (CSVRecord record : records) {
