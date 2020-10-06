@@ -15,8 +15,8 @@ public class Ln implements Calculator {
     }
 
     @Override
-    public double calcValue(double x, double p) throws IllegalArgumentException{
-        if(x < 0) throw new IllegalArgumentException(); //ln(x) defined only for x > 0
+    public double calcValue(double x, double p) throws IllegalArgumentException {
+        if (x < 0) throw new IllegalArgumentException(); //ln(x) defined only for x > 0
         double z = calcZ(x);
         double res = 0;
         double nth;
@@ -29,5 +29,10 @@ public class Ln implements Calculator {
 
         }
         return res;
+    }
+
+    @Override
+    public String getName() {
+        return "ln(x)";
     }
 }

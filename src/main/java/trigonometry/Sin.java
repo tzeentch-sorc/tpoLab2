@@ -44,4 +44,9 @@ public class Sin implements Calculator {
         }
         return res.doubleValue();
     }
+
+    @Override
+    public String getName() {
+        return "sin(x)";
+    }
 }

@@ -7,13 +7,15 @@ import org.junit.Test;
 import trigonometry.Sin;
 import utils.Writer;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
 public class LnTest {
 
     private double p = 0.00001d;
+
     @Test
     public void calcDefinedLn() {
 

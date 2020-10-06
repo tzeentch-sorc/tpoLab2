@@ -6,14 +6,20 @@ public class LogN implements Calculator {
 
     private double base;
 
-    public LogN(double base){
+    public LogN(double base) {
         this.base = base;
     }
 
     @Override
     public double calcValue(double x, double p) throws IllegalArgumentException {
-        if(x <= 0) throw new IllegalArgumentException();
+        if (x <= 0) throw new IllegalArgumentException();
         Calculator calculator = new Ln();
-        return calculator.calcValue(x, p)/calculator.calcValue(base, p);
+        return calculator.calcValue(x, p) / calculator.calcValue(base, p);
     }
+
+    @Override
+    public String getName() {
+        return String.format("log_%s(x)", base);
+    }
+
 }
