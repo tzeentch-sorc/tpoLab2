@@ -1,36 +1,48 @@
-import logarithmic.LogN;
-import trigonometry.Cofunc;
-import trigonometry.Cos;
-import trigonometry.Sin;
+import logarithmic.Log2;
+import logarithmic.Log5;
+import trigonometry.*;
 import utils.Calculator;
 
 public class Func implements Calculator {
-    private Calculator log2 = new LogN(2);
-    private Calculator log5 = new LogN(5);
+    private Log2 log2;
+    private Log5 log5;
 
-    private Calculator sin = new Sin();
-    private Calculator cos = new Cos();
+    private Sin sin;
+    private Cos cos;
 
-    private Cofunc cofunc = new Cofunc(sin, cos, Cofunc.FuncType.CTG);
+    private Ctg ctg;
+    private Sec sec;
+    private Csc csc;
+
+    public Func(Log2 log2,
+                Log5 log5,
+                Sin sin,
+                Cos cos,
+                Ctg ctg,
+                Sec sec,
+                Csc csc) {
+        this.log2 = log2;
+        this.log5 = log5;
+        this.sin = sin;
+        this.cos = cos;
+        this.ctg = ctg;
+        this.sec = sec;
+        this.csc = csc;
+    }
+
 
     @Override
     public double calcValue(double x, double p) throws IllegalArgumentException {
         if (x > 0) {
             return Math.pow(log2.calcValue(x, p) + log5.calcValue(x, p), 16);
         } else {
-            double[] cofuncVal = new double[3]; //0 = ctg, 1 = sec, 2 = csc
-            for (int i = 0; i < cofuncVal.length; i++) {
-                cofunc.setCalculatedFunc(Cofunc.FuncType.values()[i]);
-                cofuncVal[i] = cofunc.calcValue(x, p);
-            }
-
-            return (Math.pow(cofuncVal[0], 2) - cofuncVal[0] * cofuncVal[0] + cofuncVal[0] - (cofuncVal[1] + sin.calcValue(x, p)))
-                    / cofuncVal[2];
+            return (((Math.pow(ctg.calcValue(x, p), 2) - (ctg.calcValue(x, p) * ctg.calcValue(x, p))) + ctg.calcValue(x, p)) - (sec.calcValue(x, p) + sin.calcValue(x, p)))
+                    / csc.calcValue(x, p);
         }
     }
 
     @Override
     public String getName() {
-        return "Func(x)";
+        return "func(x)";
     }
 }

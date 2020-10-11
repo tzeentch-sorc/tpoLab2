@@ -2,20 +2,20 @@ package trigonometry;
 
 import utils.Calculator;
 
-public class Cos implements Calculator {
-    private Sin sin;
+public class Sec implements Calculator {
+    private Cos cos;
 
-    public Cos(Sin sin) {
-        this.sin = sin;
+    public Sec(Cos cos) {
+        this.cos = cos;
     }
 
     @Override
     public double calcValue(double x, double p) throws IllegalArgumentException {
-        return Math.sqrt(1 - Math.pow(sin.calcValue(x, p), 2));
+        return 1 / cos.calcValue(x, p);
     }
 
     @Override
     public String getName() {
-        return "cos(x)";
+        return "sec(x)";
     }
 }
