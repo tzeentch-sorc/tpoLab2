@@ -15,19 +15,19 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 public class IntegrateTest {
-    private double p = 0.00001d;
-    private Ln ln;
-    private Log2 log2;
-    private Log5 log5;
-    private Sin sin;
-    private Cos cos;
-    private Sec sec;
-    private Csc csc;
-    private Ctg ctg;
-    private Func func;
+    private static double p = 0.00001d;
+    private static Ln ln;
+    private static Log2 log2;
+    private static Log5 log5;
+    private static Sin sin;
+    private static Cos cos;
+    private static Sec sec;
+    private static Csc csc;
+    private static Ctg ctg;
+    private static Func func;
 
     @BeforeClass
-    public void init() {
+    public static void prepare() {
         ln = new Ln();
         log2 = new Log2(ln);
         log5 = new Log5(ln);
