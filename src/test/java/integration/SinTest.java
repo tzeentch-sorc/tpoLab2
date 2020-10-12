@@ -1,6 +1,7 @@
 package integration;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import stubs.Driver;
 import trigonometry.Sin;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class SinTest {
     private final double p;
     private final Sin sin;

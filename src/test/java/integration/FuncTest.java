@@ -6,6 +6,7 @@ import logarithmic.Log2;
 import logarithmic.Log5;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import stubs.CosStub;
 import stubs.Driver;
@@ -15,6 +16,7 @@ import trigonometry.*;
 
 import java.util.List;
 
+@RunWith(Parameterized.class)
 public class FuncTest {
     private final double p;
     private final Ln ln;

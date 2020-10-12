@@ -2,6 +2,7 @@ package integration;
 
 import logarithmic.Log5;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import stubs.Driver;
 import stubs.LnStub;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class Log5Test {
     private final double p;
     private final Log5 log5;
