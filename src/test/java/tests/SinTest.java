@@ -18,7 +18,7 @@ public class SinTest {
     private final double x;
 
     public SinTest(double x) {
-        p = 0.00001d;
+        p = 0.0001d;
         sin = new Sin();
         this.x = x;
     }

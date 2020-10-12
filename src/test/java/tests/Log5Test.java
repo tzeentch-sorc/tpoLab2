@@ -19,7 +19,7 @@ public class Log5Test {
     private final double x;
 
     public Log5Test(double x) {
-        p = 0.00001d;
+        p = 0.0001d;
         log5 = new Log5(new LnStub());
         this.x = x;
     }

@@ -31,7 +31,7 @@ public class FuncTest {
     private final double x;
 
     public FuncTest(double x) {
-        p = 0.00001d;
+        p = 0.0001d;
         ln = new Ln();
         sin = new Sin();
         cos = new Cos(sin);

@@ -19,7 +19,7 @@ public class CscTest {
     private final double x;
 
     public CscTest(double x) {
-        p = 0.00001d;
+        p = 0.0001d;
         csc = new Csc(new Sin());
         this.x = x;
     }

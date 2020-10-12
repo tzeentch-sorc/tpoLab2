@@ -32,7 +32,7 @@ public class FuncTest {
     private final double x;
 
     public FuncTest(double x) {
-        p = 0.00001d;
+        p = 0.0001d;
         lnStub = new LnStub();
         sinStub = new SinStub();
         cosStub = new CosStub(null);

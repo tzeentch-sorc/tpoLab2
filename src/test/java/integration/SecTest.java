@@ -18,7 +18,7 @@ public class SecTest {
     private final double x;
 
     public SecTest(double x) {
-        p = 0.00001d;
+        p = 0.0001d;
         sec = new Sec(new CosStub(null));
         this.x = x;
     }
