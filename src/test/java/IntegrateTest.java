@@ -1,3 +1,4 @@
+import func.Func;
 import logarithmic.Ln;
 import logarithmic.Log2;
 import logarithmic.Log5;
@@ -15,7 +16,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 public class IntegrateTest {
-    private static double p = 0.00001d;
+    private static double p;
     private static Ln ln;
     private static Log2 log2;
     private static Log5 log5;
@@ -28,6 +29,7 @@ public class IntegrateTest {
 
     @BeforeClass
     public static void prepare() {
+        p  = 0.00001d;
         ln = new Ln();
         log2 = new Log2(ln);
         log5 = new Log5(ln);
@@ -36,7 +38,7 @@ public class IntegrateTest {
         sec = new Sec(cos);
         csc = new Csc(sin);
         ctg = new Ctg(sin, cos);
-        func = new Func(log2, log5, sin, cos, ctg, sec, csc);
+        func = new Func(log2, log5, sin, ctg, sec, csc);
     }
 
     @Test
@@ -211,7 +213,7 @@ public class IntegrateTest {
 
             for (CSVRecord record : records) {
                 double x = Double.parseDouble(record.get(0));
-                if (x <= 0) {
+                if (x > 0) {
                     Assert.assertEquals(
                             Math.pow(Math.log(x) / Math.log(2) + Math.log(x) / Math.log(5), 16),
                             Double.parseDouble(record.get(1)), p);

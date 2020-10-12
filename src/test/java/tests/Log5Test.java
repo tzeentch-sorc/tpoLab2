@@ -1,46 +1,29 @@
 package tests;
 
-import logarithmic.Log2;
+import logarithmic.Ln;
 import logarithmic.Log5;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import stubs.LnStub;
+import stubs.Driver;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 public class Log5Test {
-    private double p = 0.00001d;
+    private double p;
+    private Log5 log5;
+
+    @Before
+    public void prepare() {
+        p = 0.00001d;
+        log5 = new Log5(new Ln());
+    }
 
     @Test
     public void test() {
-        Log5 log5 = new Log5(new LnStub());
-        String filename = String.format("%sModuleOutput.csv", log5.getName());
-        try {
-            utils.Writer.writeCSV(0.01, 0.01, 1000, p, log5);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-
-
-        try {
-            CSVParser parser = CSVParser.parse(new File(filename), Charset.forName("UTF-8"), CSVFormat.RFC4180.withFirstRecordAsHeader().withSkipHeaderRecord());
-            List<CSVRecord> records = parser.getRecords();
-
-            for (CSVRecord record : records) {
-                Assert.assertEquals(
-                        Math.log(Double.parseDouble(record.get(0))) / Math.log(5),
-                        Double.parseDouble(record.get(1)), p);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
+        List<Double> values = new Driver().supply("log5Source.csv");
+        values.forEach(x ->
+                assertEquals(Math.log(x) / Math.log(5), log5.calcValue(x, p), p));
     }
 }

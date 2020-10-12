@@ -1,3 +1,5 @@
+package func;
+
 import logarithmic.Log2;
 import logarithmic.Log5;
 import trigonometry.*;
@@ -8,7 +10,6 @@ public class Func implements Calculator {
     private Log5 log5;
 
     private Sin sin;
-    private Cos cos;
 
     private Ctg ctg;
     private Sec sec;
@@ -17,14 +18,12 @@ public class Func implements Calculator {
     public Func(Log2 log2,
                 Log5 log5,
                 Sin sin,
-                Cos cos,
                 Ctg ctg,
                 Sec sec,
                 Csc csc) {
         this.log2 = log2;
         this.log5 = log5;
         this.sin = sin;
-        this.cos = cos;
         this.ctg = ctg;
         this.sec = sec;
         this.csc = csc;

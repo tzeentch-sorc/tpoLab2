@@ -1,44 +1,30 @@
 package tests;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import stubs.Driver;
+import stubs.SinStub;
+import trigonometry.Csc;
 import trigonometry.Sin;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 public class SinTest {
-    private double p = 0.0000001d;
+    private double p;
+    private Sin sin;
+
+    @Before
+    public void prepare() {
+        p = 0.00001d;
+        sin = new Sin();
+    }
 
     @Test
     public void test() {
-        Sin sin = new Sin();
-        String filename = String.format("%sModuleOutput.csv", sin.getName());
-        try {
-            utils.Writer.writeCSV(-3.24, 0.01, 628, p, sin);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-
-
-        try {
-            CSVParser parser = CSVParser.parse(new File(filename), Charset.forName("UTF-8"), CSVFormat.RFC4180.withFirstRecordAsHeader().withSkipHeaderRecord());
-            List<CSVRecord> records = parser.getRecords();
-
-            for (CSVRecord record : records) {
-                Assert.assertEquals(
-                        Math.sin(Double.parseDouble(record.get(0))),
-                        Double.parseDouble(record.get(1)), p);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
+        List<Double> values = new Driver().supply("sinSource.csv");
+        values.forEach(x ->
+                assertEquals(Math.sin(x), sin.calcValue(x, p), p));
     }
 }

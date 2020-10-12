@@ -1,44 +1,30 @@
 package tests;
 
 import logarithmic.Ln;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import stubs.Driver;
+import stubs.SinStub;
+import trigonometry.Csc;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 public class LnTest {
-    private double p = 0.00001d;
+    private double p;
+    private Ln ln;
+
+    @Before
+    public void prepare() {
+        p = 0.00001d;
+        ln = new Ln();
+    }
 
     @Test
     public void test() {
-        Ln ln = new Ln();
-        String filename = String.format("%sModuleOutput.csv", ln.getName());
-        try {
-            utils.Writer.writeCSV(0.01, 0.01, 1000, p, ln);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-
-
-        try {
-            CSVParser parser = CSVParser.parse(new File(filename), Charset.forName("UTF-8"), CSVFormat.RFC4180.withFirstRecordAsHeader().withSkipHeaderRecord());
-            List<CSVRecord> records = parser.getRecords();
-
-            for (CSVRecord record : records) {
-                Assert.assertEquals(
-                        Math.log(Double.parseDouble(record.get(0))),
-                        Double.parseDouble(record.get(1)), p);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
+        List<Double> values = new Driver().supply("lnSource.csv");
+        values.forEach(x ->
+                assertEquals(Math.log(x), ln.calcValue(x, p), p));
     }
 }
