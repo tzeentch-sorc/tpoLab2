@@ -4,6 +4,7 @@ import logarithmic.Ln;
 import logarithmic.Log2;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import stubs.Driver;
 import stubs.LnStub;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class Log2Test {
     private final double p;
     private final Log2 log2;

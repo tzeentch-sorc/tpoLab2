@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import stubs.CosStub;
 import stubs.Driver;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class SecTest {
     private final double p;
     private final Sec sec;
