@@ -13,7 +13,7 @@ public class Ctg implements Calculator {
 
     @Override
     public double calcValue(double x, double p) throws IllegalArgumentException {
-        return cos.calcValue(x, p) / sin.calcValue(x, p);
+        return cos.calcValue(x, p/100) / sin.calcValue(x, p*p);
     }
 
     @Override

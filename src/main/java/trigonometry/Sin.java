@@ -18,8 +18,7 @@ public class Sin implements Calculator {
     }
 
     private static double calcX(double x) {
-
-        Double k = 1d;
+        Double k = 0d;
         if (Math.abs(x) > 2 * Math.PI)
             k = x / (2 * Math.PI);
         return x - 2 * k.intValue() * Math.PI;

@@ -11,7 +11,7 @@ public class Csc implements Calculator {
 
     @Override
     public double calcValue(double x, double p) throws IllegalArgumentException {
-        return 1 / sin.calcValue(x, p);
+        return 1 / sin.calcValue(x, p*p);
     }
 
     @Override

@@ -13,7 +13,7 @@ public class Log5 implements Calculator {
     @Override
     public double calcValue(double x, double p) throws IllegalArgumentException {
         if (x <= 0) throw new IllegalArgumentException();
-        return ln.calcValue(x, p) / ln.calcValue(5, p);
+        return ln.calcValue(x, p) / ln.calcValue(5, p*p);
     }
 
     @Override

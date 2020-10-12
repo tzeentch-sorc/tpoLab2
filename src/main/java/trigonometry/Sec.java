@@ -11,7 +11,7 @@ public class Sec implements Calculator {
 
     @Override
     public double calcValue(double x, double p) throws IllegalArgumentException {
-        return 1 / cos.calcValue(x, p);
+        return 1 / cos.calcValue(x, p*p);
     }
 
     @Override
