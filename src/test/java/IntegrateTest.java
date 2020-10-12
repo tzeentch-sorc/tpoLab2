@@ -134,7 +134,7 @@ public class IntegrateTest {
 
             for (CSVRecord record : records) {
                 Assert.assertEquals(
-                        1 / Math.cos(Double.parseDouble(record.get(0))),
+                        1 / Math.sin(Double.parseDouble(record.get(0))),
                         Double.parseDouble(record.get(1)), p);
             }
         } catch (IOException e) {
