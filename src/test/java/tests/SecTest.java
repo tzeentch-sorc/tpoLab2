@@ -21,7 +21,7 @@ public class SecTest {
         Sec sec = new Sec(new CosStub(null));
         String filename = String.format("%sModuleOutput.csv", sec.getName());
         try {
-            utils.Writer.writeCSV(0.1, 10, 1000, p, sec);
+            utils.Writer.writeCSV(-3.24, 0.01, 628, p, sec);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();

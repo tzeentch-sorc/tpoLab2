@@ -13,14 +13,14 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 public class SinTest {
-    private double p = 0.00001d;
+    private double p = 0.0000001d;
 
     @Test
     public void test() {
         Sin sin = new Sin();
         String filename = String.format("%sModuleOutput.csv", sin.getName());
         try {
-            utils.Writer.writeCSV(0.1, 10, 1000, p, sin);
+            utils.Writer.writeCSV(-3.24, 0.01, 628, p, sin);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();

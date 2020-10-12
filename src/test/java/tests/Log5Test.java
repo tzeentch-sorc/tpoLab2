@@ -22,7 +22,7 @@ public class Log5Test {
         Log5 log5 = new Log5(new LnStub());
         String filename = String.format("%sModuleOutput.csv", log5.getName());
         try {
-            utils.Writer.writeCSV(0.1, 10, 1000, p, log5);
+            utils.Writer.writeCSV(0.01, 0.01, 1000, p, log5);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();

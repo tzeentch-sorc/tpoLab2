@@ -21,7 +21,7 @@ public class CscTest {
         Csc csc = new Csc(new SinStub());
         String filename = String.format("%sModuleOutput.csv", csc.getName());
         try {
-            utils.Writer.writeCSV(0.1, 10, 1000, p, csc);
+            utils.Writer.writeCSV(-3.24, 0.01, 628, p, csc);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();
@@ -34,7 +34,7 @@ public class CscTest {
 
             for (CSVRecord record : records) {
                 Assert.assertEquals(
-                        1 / Math.cos(Double.parseDouble(record.get(0))),
+                        1 / Math.sin(Double.parseDouble(record.get(0))),
                         Double.parseDouble(record.get(1)), p);
             }
         } catch (IOException e) {

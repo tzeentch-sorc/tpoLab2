@@ -19,10 +19,10 @@ public class CtgTest {
 
     @Test
     public void test() {
-        Ctg ctg = new Ctg(new SinStub(), new CosStub(null));
+        Ctg ctg = new Ctg(new SinStub(), new CosStub(new SinStub()));
         String filename = String.format("%sModuleOutput.csv", ctg.getName());
         try {
-            utils.Writer.writeCSV(0.1, 10, 1000, p, ctg);
+            utils.Writer.writeCSV(-3.24, 0.01, 628, p, ctg);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();

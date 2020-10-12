@@ -21,7 +21,7 @@ public class CosTest {
         Cos cos = new Cos(new SinStub());
         String filename = String.format("%sModuleOutput.csv", cos.getName());
         try {
-            utils.Writer.writeCSV(0.1, 10, 1000, p, cos);
+            utils.Writer.writeCSV(-3.24, 0.01, 628, p, cos);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();

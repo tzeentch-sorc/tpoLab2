@@ -21,7 +21,7 @@ public class Log2Test {
         Log2 log2 = new Log2(new LnStub());
         String filename = String.format("%sModuleOutput.csv", log2.getName());
         try {
-            utils.Writer.writeCSV(0.1, 10, 1000, p, log2);
+            utils.Writer.writeCSV(0.01, 0.01, 1000, p, log2);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();

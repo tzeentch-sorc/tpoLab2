@@ -20,7 +20,7 @@ public class LnTest {
         Ln ln = new Ln();
         String filename = String.format("%sModuleOutput.csv", ln.getName());
         try {
-            utils.Writer.writeCSV(0.1, 10, 1000, p, ln);
+            utils.Writer.writeCSV(0.01, 0.01, 1000, p, ln);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();
