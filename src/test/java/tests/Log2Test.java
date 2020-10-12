@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runners.Parameterized;
 import stubs.Driver;
+import stubs.LnStub;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class Log2Test {
 
     public Log2Test(double x) {
         p = 0.00001d;
-        log2 = new Log2(new Ln());
+        log2 = new Log2(new LnStub());
         this.x = x;
     }
 

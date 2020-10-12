@@ -1,6 +1,5 @@
-package tests;
+package integration;
 
-import logarithmic.Ln;
 import logarithmic.Log5;
 import org.junit.Test;
 import org.junit.runners.Parameterized;

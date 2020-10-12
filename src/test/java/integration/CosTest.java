@@ -1,34 +1,36 @@
-package tests;
+package integration;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import stubs.CosStub;
 import stubs.Driver;
 import stubs.SinStub;
-import trigonometry.Sec;
+import trigonometry.Cos;
+import trigonometry.Sin;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class SecTest {
+@RunWith(Parameterized.class)
+public class CosTest {
     private final double p;
-    private final Sec sec;
+    private final Cos cos;
     private final double x;
 
-    public SecTest(double x) {
+    public CosTest(double x) {
         p = 0.00001d;
-        sec = new Sec(new CosStub(null));
+        cos = new Cos(new Sin());
         this.x = x;
     }
 
     @Parameterized.Parameters
     public static List<Double> data() {
-        return new Driver().supply("secSource.csv");
+        return new Driver().supply("cosSource.csv");
     }
 
     @Test
     public void test() {
-        assertEquals(1 / Math.cos(x), sec.calcValue(x, p), p);
+        assertEquals(Math.cos(x), cos.calcValue(x, p), p);
     }
 }
