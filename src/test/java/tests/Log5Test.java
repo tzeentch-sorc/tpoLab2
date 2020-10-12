@@ -2,8 +2,8 @@ package tests;
 
 import logarithmic.Ln;
 import logarithmic.Log5;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runners.Parameterized;
 import stubs.Driver;
 
 import java.util.List;
@@ -11,19 +11,23 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class Log5Test {
-    private double p;
-    private Log5 log5;
+    private final double p;
+    private final Log5 log5;
+    private final double x;
 
-    @Before
-    public void prepare() {
+    public Log5Test(double x) {
         p = 0.00001d;
         log5 = new Log5(new Ln());
+        this.x = x;
+    }
+
+    @Parameterized.Parameters
+    public static List<Double> data() {
+        return new Driver().supply("log5Source.csv");
     }
 
     @Test
     public void test() {
-        List<Double> values = new Driver().supply("log5Source.csv");
-        values.forEach(x ->
-                assertEquals(Math.log(x) / Math.log(5), log5.calcValue(x, p), p));
+        assertEquals(Math.log(x) / Math.log(5), log5.calcValue(x, p), p);
     }
 }

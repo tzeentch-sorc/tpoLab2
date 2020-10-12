@@ -1,7 +1,8 @@
 package tests;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import stubs.Driver;
 import stubs.SinStub;
 import trigonometry.Cos;
@@ -10,20 +11,25 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class CosTest {
-    private double p;
-    private Cos cos;
+    private final double p;
+    private final Cos cos;
+    private final double x;
 
-    @Before
-    public void prepare() {
+    public CosTest(double x) {
         p = 0.00001d;
         cos = new Cos(new SinStub());
+        this.x = x;
+    }
+
+    @Parameterized.Parameters
+    public static List<Double> data() {
+        return new Driver().supply("cosSource.csv");
     }
 
     @Test
     public void test() {
-        List<Double> values = new Driver().supply("cosSource.csv");
-        values.forEach(x ->
-                assertEquals(Math.cos(x), cos.calcValue(x, p), p));
+        assertEquals(Math.cos(x), cos.calcValue(x, p), p);
     }
 }

@@ -2,18 +2,21 @@ package func;
 
 import logarithmic.Log2;
 import logarithmic.Log5;
-import trigonometry.*;
+import trigonometry.Csc;
+import trigonometry.Ctg;
+import trigonometry.Sec;
+import trigonometry.Sin;
 import utils.Calculator;
 
 public class Func implements Calculator {
-    private Log2 log2;
-    private Log5 log5;
+    private final Log2 log2;
+    private final Log5 log5;
 
-    private Sin sin;
+    private final Sin sin;
 
-    private Ctg ctg;
-    private Sec sec;
-    private Csc csc;
+    private final Ctg ctg;
+    private final Sec sec;
+    private final Csc csc;
 
     public Func(Log2 log2,
                 Log5 log5,

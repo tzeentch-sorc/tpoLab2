@@ -3,7 +3,7 @@ package trigonometry;
 import utils.Calculator;
 
 public class Csc implements Calculator {
-    private Sin sin;
+    private final Sin sin;
 
     public Csc(Sin sin) {
         this.sin = sin;
@@ -11,7 +11,7 @@ public class Csc implements Calculator {
 
     @Override
     public double calcValue(double x, double p) throws IllegalArgumentException {
-        return 1 / sin.calcValue(x, p*p);
+        return 1 / sin.calcValue(x, p * p);
     }
 
     @Override

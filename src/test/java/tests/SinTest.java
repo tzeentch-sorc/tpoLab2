@@ -2,9 +2,8 @@ package tests;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runners.Parameterized;
 import stubs.Driver;
-import stubs.SinStub;
-import trigonometry.Csc;
 import trigonometry.Sin;
 
 import java.util.List;
@@ -12,19 +11,23 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class SinTest {
-    private double p;
-    private Sin sin;
+    private final double p;
+    private final Sin sin;
+    private final double x;
 
-    @Before
-    public void prepare() {
+    public SinTest(double x) {
         p = 0.00001d;
         sin = new Sin();
+        this.x = x;
+    }
+
+    @Parameterized.Parameters
+    public static List<Double> data() {
+        return new Driver().supply("sinSource.csv");
     }
 
     @Test
     public void test() {
-        List<Double> values = new Driver().supply("sinSource.csv");
-        values.forEach(x ->
-                assertEquals(Math.sin(x), sin.calcValue(x, p), p));
+        assertEquals(Math.sin(x), sin.calcValue(x, p), p);
     }
 }

@@ -4,7 +4,7 @@ import utils.Calculator;
 
 public class Log5 implements Calculator {
 
-    private Ln ln;
+    private final Ln ln;
 
     public Log5(Ln ln) {
         this.ln = ln;
@@ -13,7 +13,7 @@ public class Log5 implements Calculator {
     @Override
     public double calcValue(double x, double p) throws IllegalArgumentException {
         if (x <= 0) throw new IllegalArgumentException();
-        return ln.calcValue(x, p) / ln.calcValue(5, p*p);
+        return ln.calcValue(x, p) / ln.calcValue(5, p * p);
     }
 
     @Override

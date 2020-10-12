@@ -1,30 +1,32 @@
 package tests;
 
 import logarithmic.Ln;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runners.Parameterized;
 import stubs.Driver;
-import stubs.SinStub;
-import trigonometry.Csc;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 public class LnTest {
-    private double p;
-    private Ln ln;
+    private final double p;
+    private final Ln ln;
+    private final double x;
 
-    @Before
-    public void prepare() {
+    public LnTest(double x) {
         p = 0.00001d;
         ln = new Ln();
+        this.x = x;
+    }
+
+    @Parameterized.Parameters
+    public static List<Double> data() {
+        return new Driver().supply("lnSource.csv");
     }
 
     @Test
     public void test() {
-        List<Double> values = new Driver().supply("lnSource.csv");
-        values.forEach(x ->
-                assertEquals(Math.log(x), ln.calcValue(x, p), p));
+        assertEquals(Math.log(x), ln.calcValue(x, p), p);
     }
 }

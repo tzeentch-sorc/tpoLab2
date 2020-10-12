@@ -3,7 +3,7 @@ package trigonometry;
 import utils.Calculator;
 
 public class Sec implements Calculator {
-    private Cos cos;
+    private final Cos cos;
 
     public Sec(Cos cos) {
         this.cos = cos;
@@ -11,7 +11,7 @@ public class Sec implements Calculator {
 
     @Override
     public double calcValue(double x, double p) throws IllegalArgumentException {
-        return 1 / cos.calcValue(x, p*p);
+        return 1 / cos.calcValue(x, p * p);
     }
 
     @Override

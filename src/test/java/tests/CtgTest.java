@@ -1,7 +1,7 @@
 package tests;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runners.Parameterized;
 import stubs.CosStub;
 import stubs.Driver;
 import stubs.SinStub;
@@ -12,19 +12,23 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class CtgTest {
-    private double p;
-    private Ctg ctg;
+    private final double p;
+    private final Ctg ctg;
+    private final double x;
 
-    @Before
-    public void prepare() {
+    public CtgTest(double x) {
         p = 0.00001d;
         ctg = new Ctg(new SinStub(), new CosStub(null));
+        this.x = x;
+    }
+
+    @Parameterized.Parameters
+    public static List<Double> data() {
+        return new Driver().supply("ctgSource.csv");
     }
 
     @Test
     public void test() {
-        List<Double> values = new Driver().supply("ctgSource.csv");
-        values.forEach(x ->
-                assertEquals(1/Math.tan(x), ctg.calcValue(x, p), p));
+        assertEquals(1 / Math.tan(x), ctg.calcValue(x, p), p);
     }
 }

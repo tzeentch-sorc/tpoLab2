@@ -5,8 +5,8 @@ import logarithmic.Ln;
 import logarithmic.Log2;
 import logarithmic.Log5;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runners.Parameterized;
 import stubs.CosStub;
 import stubs.Driver;
 import stubs.LnStub;
@@ -16,20 +16,20 @@ import trigonometry.*;
 import java.util.List;
 
 public class FuncTest {
-    private static double p;
-    private static Ln lnStub;
-    private static Log2 log2;
-    private static Log5 log5;
-    private static Sin sin;
-    private static Sin sinStub;
-    private static Cos cosStub;
-    private static Sec sec;
-    private static Csc csc;
-    private static Ctg ctg;
-    private static Func func;
+    private final double p;
+    private final Ln lnStub;
+    private final Log2 log2;
+    private final Log5 log5;
+    private final Sin sin;
+    private final Sin sinStub;
+    private final Cos cosStub;
+    private final Sec sec;
+    private final Csc csc;
+    private final Ctg ctg;
+    private final Func func;
+    private final double x;
 
-    @BeforeClass
-    public static void prepare() {
+    public FuncTest(double x) {
         p = 0.00001d;
         lnStub = new LnStub();
         sinStub = new SinStub();
@@ -41,24 +41,26 @@ public class FuncTest {
         csc = new Csc(sinStub);
         ctg = new Ctg(sinStub, cosStub);
         func = new Func(log2, log5, sin, ctg, sec, csc);
+        this.x = x;
     }
 
+    @Parameterized.Parameters
+    public static List<Double> data() {
+        return new Driver().supply("funcSource.csv");
+    }
 
     @Test
     public void test() {
-        List<Double> values = new Driver().supply("funcSource.csv");
-        values.forEach(x -> {
-            if (x > 0) {
-                Assert.assertEquals(
-                        Math.pow(Math.log(x) / Math.log(2) + Math.log(x) / Math.log(5), 16),
-                        func.calcValue(x, p), p);
-            } else {
-                Assert.assertEquals(
-                        ((Math.pow((1 / Math.tan(x)), 2) - ((1 / Math.tan(x)) * (1 / Math.tan(x))) + (1 / Math.tan(x)))
-                                - ((1 / Math.cos(x)) + Math.sin(x)))
-                                / (1 / Math.sin(x)),
-                        func.calcValue(x, p), p);
-            }
-        });
+        if (x > 0) {
+            Assert.assertEquals(
+                    Math.pow(Math.log(x) / Math.log(2) + Math.log(x) / Math.log(5), 16),
+                    func.calcValue(x, p), p);
+        } else {
+            Assert.assertEquals(
+                    ((Math.pow((1 / Math.tan(x)), 2) - ((1 / Math.tan(x)) * (1 / Math.tan(x))) + (1 / Math.tan(x)))
+                            - ((1 / Math.cos(x)) + Math.sin(x)))
+                            / (1 / Math.sin(x)),
+                    func.calcValue(x, p), p);
+        }
     }
 }
