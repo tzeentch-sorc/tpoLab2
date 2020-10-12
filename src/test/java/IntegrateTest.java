@@ -210,8 +210,18 @@ public class IntegrateTest {
             List<CSVRecord> records = parser.getRecords();
 
             for (CSVRecord record : records) {
-                Assert.assertEquals(1 / Math.tan(Double.parseDouble(record.get(0))),
-                        Double.parseDouble(record.get(1)), p);
+                double x = Double.parseDouble(record.get(0));
+                if (x <= 0) {
+                    Assert.assertEquals(
+                            Math.pow(Math.log(x) / Math.log(2) + Math.log(x) / Math.log(5), 16),
+                            Double.parseDouble(record.get(1)), p);
+                } else {
+                    Assert.assertEquals(
+                            ((Math.pow((1 / Math.tan(x)), 2) - ((1 / Math.tan(x)) * (1 / Math.tan(x))) + (1 / Math.tan(x)))
+                                    - ((1 / Math.cos(x)) + Math.sin(x)))
+                                    / (1 / Math.sin(x)),
+                            Double.parseDouble(record.get(1)), p);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
