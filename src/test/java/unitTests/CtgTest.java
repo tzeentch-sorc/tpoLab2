@@ -19,7 +19,7 @@ public class CtgTest {
     private final double x;
 
     public CtgTest(double x) {
-        p = 0.0000001d;
+        p = 0.000001d;
         ctg = new Ctg(new SinStub(), new CosStub(null));
         this.x = x;
     }
