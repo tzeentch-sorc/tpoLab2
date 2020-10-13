@@ -19,7 +19,7 @@ public class Log5Test {
     private final double x;
 
     public Log5Test(double x) {
-        p = 0.0001d;
+        p = 0.000001d;
         log5 = new Log5(new LnStub());
         this.x = x;
     }
@@ -31,6 +31,6 @@ public class Log5Test {
 
     @Test
     public void test() {
-        assertEquals(Math.log(x) / Math.log(5), log5.calcValue(x, p), p);
+        assertEquals(Math.log(x) / Math.log(5), log5.calcValue(x, p),p);
     }
 }

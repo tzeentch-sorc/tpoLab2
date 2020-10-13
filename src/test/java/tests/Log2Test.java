@@ -20,7 +20,7 @@ public class Log2Test {
     private final double x;
 
     public Log2Test(double x) {
-        p = 0.0001d;
+        p = 0.000001d;
         log2 = new Log2(new LnStub());
         this.x = x;
     }

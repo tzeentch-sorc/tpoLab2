@@ -17,7 +17,7 @@ public class LnTest {
     private final double x;
 
     public LnTest(double x) {
-        p = 0.000001d;
+        p = 0.0000001d;
         ln = new Ln();
         this.x = x;
     }
@@ -29,6 +29,6 @@ public class LnTest {
 
     @Test
     public void test() {
-        assertEquals(Math.log(x), ln.calcValue(x, p), p);
+        assertEquals(Math.log(x), ln.calcValue(x, p), p*10);
     }
 }
