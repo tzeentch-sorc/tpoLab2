@@ -32,7 +32,7 @@ public class FuncTest {
     private final double x;
 
     public FuncTest(double x) {
-        p = 0.0001d;
+        p = 0.00001d;
         lnStub = new LnStub();
         sinStub = new SinStub();
         cosStub = new CosStub(null);
@@ -56,7 +56,7 @@ public class FuncTest {
         if (x > 0) {
             Assert.assertEquals(
                     Math.pow(Math.log(x) / Math.log(2) + Math.log(x) / Math.log(5), 16),
-                    func.calcValue(x, p), p);
+                    func.calcValue(x, p), Math.pow(p, -1));
         } else {
             Assert.assertEquals(
                     ((Math.pow((1 / Math.tan(x)), 2) - ((1 / Math.tan(x)) * (1 / Math.tan(x))) + (1 / Math.tan(x)))
