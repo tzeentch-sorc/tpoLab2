@@ -18,7 +18,7 @@ public class CscTest {
     private final double x;
 
     public CscTest(double x) {
-        p = 0.0001d;
+        p = 0.0000001d;
         csc = new Csc(new SinStub());
         this.x = x;
     }

@@ -18,7 +18,7 @@ public class CosTest {
     private final double x;
 
     public CosTest(double x) {
-        p = 0.0001d;
+        p = 0.0000001d;
         cos = new Cos(new SinStub());
         this.x = x;
     }
