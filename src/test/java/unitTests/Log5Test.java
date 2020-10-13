@@ -1,4 +1,4 @@
-package integration;
+package unitTests;
 
 import logarithmic.Log5;
 import org.junit.Test;

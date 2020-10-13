@@ -1,36 +1,36 @@
-package tests;
+package integrationTest;
 
-import logarithmic.Ln;
-import logarithmic.Log5;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import stubs.CosStub;
 import stubs.Driver;
-import stubs.LnStub;
+import stubs.SinStub;
+import trigonometry.Ctg;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class Log5Test {
+public class CtgTest {
     private final double p;
-    private final Log5 log5;
+    private final Ctg ctg;
     private final double x;
 
-    public Log5Test(double x) {
-        p = 0.000001d;
-        log5 = new Log5(new LnStub());
+    public CtgTest(double x) {
+        p = 0.0001d;
+        ctg = new Ctg(new SinStub(), new CosStub(null));
         this.x = x;
     }
 
     @Parameterized.Parameters
     public static List<Double> data() {
-        return new Driver().supply("log5Source.csv");
+        return new Driver().supply("ctgSource.csv");
     }
 
     @Test
     public void test() {
-        assertEquals(Math.log(x) / Math.log(5), log5.calcValue(x, p),p);
+        assertEquals(1 / Math.tan(x), ctg.calcValue(x, p), p);
     }
 }

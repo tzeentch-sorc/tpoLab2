@@ -1,35 +1,35 @@
-package tests;
+package integrationTest;
 
-import org.junit.Before;
+import logarithmic.Log5;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import stubs.Driver;
-import trigonometry.Sin;
+import stubs.LnStub;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class SinTest {
+public class Log5Test {
     private final double p;
-    private final Sin sin;
+    private final Log5 log5;
     private final double x;
 
-    public SinTest(double x) {
-        p = 0.0001d;
-        sin = new Sin();
+    public Log5Test(double x) {
+        p = 0.000001d;
+        log5 = new Log5(new LnStub());
         this.x = x;
     }
 
     @Parameterized.Parameters
     public static List<Double> data() {
-        return new Driver().supply("sinSource.csv");
+        return new Driver().supply("log5Source.csv");
     }
 
     @Test
     public void test() {
-        assertEquals(Math.sin(x), sin.calcValue(x, p), p);
+        assertEquals(Math.log(x) / Math.log(5), log5.calcValue(x, p), p);
     }
 }

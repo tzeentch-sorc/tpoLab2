@@ -1,36 +1,35 @@
-package integration;
+package unitTests;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import stubs.CosStub;
 import stubs.Driver;
 import stubs.SinStub;
-import trigonometry.Ctg;
+import trigonometry.Cos;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class CtgTest {
+public class CosTest {
     private final double p;
-    private final Ctg ctg;
+    private final Cos cos;
     private final double x;
 
-    public CtgTest(double x) {
+    public CosTest(double x) {
         p = 0.0001d;
-        ctg = new Ctg(new SinStub(), new CosStub(null));
+        cos = new Cos(new SinStub());
         this.x = x;
     }
 
     @Parameterized.Parameters
     public static List<Double> data() {
-        return new Driver().supply("ctgSource.csv");
+        return new Driver().supply("cosSource.csv");
     }
 
     @Test
     public void test() {
-        assertEquals(1 / Math.tan(x), ctg.calcValue(x, p), p);
+        assertEquals(Math.cos(x), cos.calcValue(x, p), p);
     }
 }

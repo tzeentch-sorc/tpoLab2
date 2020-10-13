@@ -1,4 +1,4 @@
-package integration;
+package integrationTest;
 
 import func.Func;
 import logarithmic.Ln;
@@ -8,10 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import stubs.CosStub;
 import stubs.Driver;
-import stubs.LnStub;
-import stubs.SinStub;
 import trigonometry.*;
 
 import java.util.List;

@@ -1,10 +1,9 @@
-package integration;
+package integrationTest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import stubs.Driver;
-import stubs.SinStub;
 import trigonometry.Csc;
 import trigonometry.Sin;
 

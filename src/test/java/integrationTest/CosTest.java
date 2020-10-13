@@ -1,35 +1,35 @@
-package integration;
+package integrationTest;
 
-import logarithmic.Log2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import stubs.Driver;
-import stubs.LnStub;
+import trigonometry.Cos;
+import trigonometry.Sin;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class Log2Test {
+public class CosTest {
     private final double p;
-    private final Log2 log2;
+    private final Cos cos;
     private final double x;
 
-    public Log2Test(double x) {
-        p = 0.000001d;
-        log2 = new Log2(new LnStub());
+    public CosTest(double x) {
+        p = 0.0001d;
+        cos = new Cos(new Sin());
         this.x = x;
     }
 
     @Parameterized.Parameters
     public static List<Double> data() {
-        return new Driver().supply("log2Source.csv");
+        return new Driver().supply("cosSource.csv");
     }
 
     @Test
     public void test() {
-                assertEquals(Math.log(x) / Math.log(2), log2.calcValue(x, p), p);
+        assertEquals(Math.cos(x), cos.calcValue(x, p), p);
     }
 }
