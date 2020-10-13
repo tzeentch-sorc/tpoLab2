@@ -20,7 +20,6 @@ public class Cos implements Calculator {
     @Override
     public double calcValue(double x, double p) throws IllegalArgumentException {
         double sign = calcSign(x);
-        //if(x == 10.1) System.out.println(Math.sqrt(1 - Math.pow(sin.calcValue(x, p*p), 2)) * sign);
         return Math.sqrt(1 - Math.pow(sin.calcValue(x, p * p), 2)) * sign;
     }
 
