@@ -17,7 +17,7 @@ public class LnTest {
     private final double x;
 
     public LnTest(double x) {
-        p = 0.0001d;
+        p = 0.000001d;
         ln = new Ln();
         this.x = x;
     }
