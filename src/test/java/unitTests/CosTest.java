@@ -18,7 +18,7 @@ public class CosTest {
     private final double x;
 
     public CosTest(double x) {
-        p = 0.000001d;
+        p = 0.0000001d;
         cos = new Cos(new SinStub());
         this.x = x;
     }
@@ -30,6 +30,6 @@ public class CosTest {
 
     @Test
     public void test() {
-        assertEquals(Math.cos(x), cos.calcValue(x, p), p);
+        assertEquals(Math.cos(x), cos.calcValue(x, p), p*10);
     }
 }

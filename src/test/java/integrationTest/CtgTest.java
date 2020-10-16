@@ -6,7 +6,9 @@ import org.junit.runners.Parameterized;
 import stubs.CosStub;
 import stubs.Driver;
 import stubs.SinStub;
+import trigonometry.Cos;
 import trigonometry.Ctg;
+import trigonometry.Sin;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class CtgTest {
 
     public CtgTest(double x) {
         p = 0.000001d;
-        ctg = new Ctg(new SinStub(), new CosStub(null));
+        ctg = new Ctg(new Sin(), new Cos(new Sin()));
         this.x = x;
     }
 

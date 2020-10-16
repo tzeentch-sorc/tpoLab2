@@ -5,7 +5,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import stubs.CosStub;
 import stubs.Driver;
+import trigonometry.Cos;
 import trigonometry.Sec;
+import trigonometry.Sin;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class SecTest {
 
     public SecTest(double x) {
         p = 0.000001d;
-        sec = new Sec(new CosStub(null));
+        sec = new Sec(new Cos(new Sin()));
         this.x = x;
     }
 

@@ -1,5 +1,6 @@
 package integrationTest;
 
+import logarithmic.Ln;
 import logarithmic.Log2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,8 +19,8 @@ public class Log2Test {
     private final double x;
 
     public Log2Test(double x) {
-        p = 0.000001d;
-        log2 = new Log2(new LnStub());
+        p = 0.0000001d;
+        log2 = new Log2(new Ln());
         this.x = x;
     }
 
@@ -30,6 +31,6 @@ public class Log2Test {
 
     @Test
     public void test() {
-        assertEquals(Math.log(x) / Math.log(2), log2.calcValue(x, p), p);
+        assertEquals(Math.log(x) / Math.log(2), log2.calcValue(x, p), p*10);
     }
 }
